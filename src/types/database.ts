@@ -81,3 +81,19 @@ export interface LectureFilters {
   dateTo: string;
   page: number;
 }
+
+// ─── Enriched Row Types (with computed stats) ─────────────────────────────────
+
+export interface StudentWithAttendance extends Student {
+  /** Lectures attended out of total completed lectures (0–100), or null if no lectures yet */
+  attendancePercent: number | null;
+  /** Raw count of lectures this student attended */
+  lecturesAttended: number;
+}
+
+export interface ProfessorWithStats extends Professor {
+  /** Number of completed/auto-ended lectures this professor ran */
+  completedLectures: number;
+  /** Average % of total students who attended their lectures, or null if none yet */
+  avgAttendancePercent: number | null;
+}

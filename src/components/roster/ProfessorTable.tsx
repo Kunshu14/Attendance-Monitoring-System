@@ -1,14 +1,15 @@
 'use client';
 
-import { CreditCard, Pencil, Trash2, Plus } from 'lucide-react';
+import { CreditCard, Pencil, Trash2, Plus, TrendingUp, BookOpen } from 'lucide-react';
 import type { Professor } from '@/types/database';
+import type { ProfessorWithStats } from '@/types/database';
 import EmptyState from '@/components/ui/EmptyState';
+import AttendanceBadge from '@/components/ui/AttendanceBadge';
 import { formatDate } from '@/lib/utils';
 import { useState } from 'react';
 
-
 interface ProfessorTableProps {
-  professors: Professor[];
+  professors: ProfessorWithStats[];
   onAdd: () => void;
   onEdit: (professor: Professor) => void;
   onDelete: (id: string) => void;
@@ -59,6 +60,12 @@ export default function ProfessorTable({
               <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">
                 <div className="flex items-center gap-1.5"><CreditCard size={11} /> RFID UID</div>
               </th>
+              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">
+                <div className="flex items-center gap-1.5"><BookOpen size={11} /> Lectures</div>
+              </th>
+              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">
+                <div className="flex items-center gap-1.5"><TrendingUp size={11} /> Avg Attendance</div>
+              </th>
               <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">Registered</th>
               <th className="px-5 py-3 w-24 text-right text-[11px] font-medium uppercase tracking-wider text-white/35">Actions</th>
             </tr>
@@ -66,7 +73,7 @@ export default function ProfessorTable({
           <tbody className="divide-y divide-white/[0.04]">
             {professors.length === 0 ? (
               <tr>
-                <td colSpan={4}>
+                <td colSpan={6}>
                   <EmptyState
                     title="No professors"
                     description="Register your first faculty member using the button above."
@@ -91,6 +98,15 @@ export default function ProfessorTable({
                     <span className="rounded-md bg-cyan-500/10 px-2.5 py-1 text-xs font-mono text-cyan-300/80">
                       {prof.rfid_uid}
                     </span>
+                  </td>
+                  <td className="px-5 py-3.5">
+                    <span className="inline-flex items-center gap-1.5 rounded-lg bg-white/[0.05] px-2.5 py-0.5 text-xs font-medium text-white/70">
+                      <BookOpen size={10} className="text-white/40" />
+                      {prof.completedLectures}
+                    </span>
+                  </td>
+                  <td className="px-5 py-3.5">
+                    <AttendanceBadge percent={prof.avgAttendancePercent} />
                   </td>
                   <td className="px-5 py-3.5 text-xs text-white/35">{formatDate(prof.created_at)}</td>
                   <td className="px-5 py-3.5">

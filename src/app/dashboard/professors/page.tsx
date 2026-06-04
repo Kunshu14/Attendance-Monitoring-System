@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import DashboardShell from '@/components/layout/DashboardShell';
 import ProfessorTable from '@/components/roster/ProfessorTable';
 import ProfessorModal from '@/components/roster/ProfessorModal';
-import type { Professor } from '@/types/database';
+import type { Professor, ProfessorWithStats } from '@/types/database';
 import { createClient } from '@/lib/supabase/client';
 
 interface ProfessorFormData {
@@ -13,7 +13,7 @@ interface ProfessorFormData {
 }
 
 export default function ProfessorsPage() {
-  const [professors, setProfessors] = useState<Professor[]>([]);
+  const [professors, setProfessors] = useState<ProfessorWithStats[]>([]);
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [editTarget, setEditTarget] = useState<Professor | null>(null);
@@ -21,11 +21,51 @@ export default function ProfessorsPage() {
   const fetchProfessors = useCallback(async () => {
     setLoading(true);
     const supabase = createClient();
-    const { data } = await supabase
+
+    // 1. Fetch all professors
+    const { data: rawProfessors } = await supabase
       .from('professors')
       .select('*')
       .order('full_name', { ascending: true });
-    setProfessors(data ?? []);
+
+    // 2. Fetch total student count (denominator for avg attendance)
+    const { count: totalStudents } = await supabase
+      .from('students')
+      .select('id', { count: 'exact', head: true });
+
+    // 3. Fetch completed lectures with attendee counts, grouped by professor
+    const { data: completedLectures } = await supabase
+      .from('lectures')
+      .select('professor_id, attendance_records(count)')
+      .in('status', ['Completed', 'Auto-Ended']);
+
+    // Aggregate per professor
+    const statsMap: Record<string, { totalRate: number; count: number }> = {};
+    const total = totalStudents ?? 0;
+
+    (completedLectures ?? []).forEach((lecture) => {
+      const pid = lecture.professor_id;
+      if (!pid) return;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const attendees = (lecture.attendance_records as any[])?.[0]?.count ?? 0;
+      const rate = total > 0 ? (attendees / total) * 100 : 0;
+
+      if (!statsMap[pid]) statsMap[pid] = { totalRate: 0, count: 0 };
+      statsMap[pid].totalRate += rate;
+      statsMap[pid].count += 1;
+    });
+
+    const enriched: ProfessorWithStats[] = (rawProfessors ?? []).map((p) => {
+      const s = statsMap[p.id];
+      return {
+        ...p,
+        completedLectures: s?.count ?? 0,
+        avgAttendancePercent:
+          s && s.count > 0 ? s.totalRate / s.count : null,
+      };
+    });
+
+    setProfessors(enriched);
     setLoading(false);
   }, []);
 
@@ -65,7 +105,7 @@ export default function ProfessorsPage() {
   return (
     <DashboardShell
       title="Professors Roster"
-      subtitle="Faculty members and their RFID card assignments"
+      subtitle="Faculty members, lecture history, and average class attendance rates"
       onRefresh={fetchProfessors}
     >
       {loading ? (
