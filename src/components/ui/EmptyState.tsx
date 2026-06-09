@@ -13,11 +13,11 @@ export default function EmptyState({
 }: EmptyStateProps) {
   return (
     <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
-      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/[0.04] mb-4">
-        <Icon size={24} className="text-white/20" />
+      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-panel-hover mb-4">
+        <Icon size={24} className="text-fg-muted" />
       </div>
-      <p className="text-sm font-medium text-white/50">{title}</p>
-      <p className="text-xs text-white/25 mt-1 max-w-xs">{description}</p>
+      <p className="text-sm font-medium text-fg-tertiary">{title}</p>
+      <p className="text-xs text-fg-muted mt-1 max-w-xs">{description}</p>
     </div>
   );
 }

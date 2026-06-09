@@ -4,7 +4,7 @@ const STATUS_STYLES: Record<LectureStatus, string> = {
   Active:
     'bg-emerald-400/10 text-emerald-400 ring-1 ring-emerald-400/20',
   Completed:
-    'bg-indigo-400/10 text-indigo-300 ring-1 ring-indigo-400/20',
+    'bg-indigo-400/10 text-indigo-700 dark:text-indigo-300 ring-1 ring-indigo-400/20',
   'Auto-Ended':
     'bg-amber-400/10 text-amber-400 ring-1 ring-amber-400/20',
 };

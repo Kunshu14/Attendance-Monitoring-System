@@ -110,7 +110,7 @@ export default function ProfessorsPage() {
     >
       {loading ? (
         <div className="flex items-center justify-center py-20">
-          <div className="h-8 w-8 rounded-full border-2 border-white/10 border-t-violet-400 animate-spin" />
+          <div className="h-8 w-8 rounded-full border-2 border-panel-border border-t-violet-600 dark:border-t-violet-400 animate-spin" />
         </div>
       ) : (
         <ProfessorTable

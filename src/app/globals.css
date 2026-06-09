@@ -1,16 +1,26 @@
 @import "tailwindcss";
 
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --color-background: #0a0f1e;
-  --color-surface: #111827;
-  --color-surface-2: #1f2937;
+  
+  --color-page-bg: var(--page-bg);
+  --color-panel-bg: var(--panel-bg);
+  --color-panel-border: var(--panel-border);
+  --color-panel-hover: var(--panel-hover);
+  
+  --color-fg-primary: var(--fg-primary);
+  --color-fg-secondary: var(--fg-secondary);
+  --color-fg-tertiary: var(--fg-tertiary);
+  --color-fg-muted: var(--fg-muted);
 }
 
 /* Smooth scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  scrollbar-color: var(--fg-muted) transparent;
 }
 
 *::-webkit-scrollbar {
@@ -23,12 +33,12 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--panel-border);
   border-radius: 9999px;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--fg-tertiary);
 }
 
 /* Smooth focus rings */
@@ -37,21 +47,52 @@
   outline-offset: 2px;
 }
 
-/* Prevent FOUC for dark theme */
-html {
-  background-color: #0a0f1e;
+/* Base colors - Light mode default */
+:root {
+  --page-bg: #f8fafc;
+  --panel-bg: #ffffff;
+  --panel-border: rgba(0, 0, 0, 0.1);
+  --panel-hover: rgba(0, 0, 0, 0.05);
+  
+  --fg-primary: #0f172a;
+  --fg-secondary: rgba(15, 23, 42, 0.7);
+  --fg-tertiary: rgba(15, 23, 42, 0.5);
+  --fg-muted: rgba(15, 23, 42, 0.35);
 }
 
-/* Native date input dark styling */
+/* Dark mode overrides */
+.dark {
+  --page-bg: #0a0f1e;
+  --panel-bg: #0d1117;
+  /* Next overrides apply to components like Modal, Sidebar, etc. */
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --panel-hover: rgba(255, 255, 255, 0.06);
+  
+  --fg-primary: #ffffff;
+  --fg-secondary: rgba(255, 255, 255, 0.7);
+  --fg-tertiary: rgba(255, 255, 255, 0.4);
+  --fg-muted: rgba(255, 255, 255, 0.25);
+}
+
+
+/* Prevent FOUC for theme */
+html {
+  background-color: var(--page-bg);
+}
+
+/* Native date input styling */
 input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(0.6);
   cursor: pointer;
 }
 
-/* Select options dark theme */
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.6);
+}
+
+/* Select options */
 select option {
-  background-color: #1f2937;
-  color: white;
+  background-color: var(--panel-bg);
+  color: var(--fg-primary);
 }
 
 /* Animate in utility */

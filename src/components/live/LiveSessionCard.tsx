@@ -78,11 +78,11 @@ export default function LiveSessionCard({ initial }: LiveSessionCardProps) {
   if (sessions.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-center">
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[0.04] mb-4">
-          <Wifi size={28} className="text-white/20" />
+        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-panel-hover mb-4">
+          <Wifi size={28} className="text-fg-muted" />
         </div>
-        <p className="text-sm font-medium text-white/50">No Active Sessions</p>
-        <p className="text-xs text-white/25 mt-1">Lectures will appear here once started by professors.</p>
+        <p className="text-sm font-medium text-fg-tertiary">No Active Sessions</p>
+        <p className="text-xs text-fg-muted mt-1">Lectures will appear here once started by professors.</p>
       </div>
     );
   }
@@ -111,34 +111,34 @@ export default function LiveSessionCard({ initial }: LiveSessionCardProps) {
                 {initials(session.professors?.full_name ?? 'Unknown')}
               </div>
               <div>
-                <p className="text-sm font-semibold text-white leading-tight">
+                <p className="text-sm font-semibold text-fg-primary leading-tight">
                   {session.professors?.full_name ?? 'Unknown Professor'}
                 </p>
-                <p className="text-xs text-white/40 mt-0.5">Professor</p>
+                <p className="text-xs text-fg-tertiary mt-0.5">Professor</p>
               </div>
             </div>
 
             {/* Stats row */}
             <div className="grid grid-cols-2 gap-3">
-              <div className="rounded-xl bg-white/[0.04] px-3 py-2.5">
+              <div className="rounded-xl bg-panel-hover px-3 py-2.5">
                 <div className="flex items-center gap-1.5 mb-1">
-                  <Users size={11} className="text-indigo-400" />
-                  <span className="text-[10px] uppercase tracking-wider text-white/35">Students</span>
+                  <Users size={11} className="text-indigo-600 dark:text-indigo-400" />
+                  <span className="text-[10px] uppercase tracking-wider text-fg-tertiary">Students</span>
                 </div>
-                <p className="text-xl font-bold text-white">{session.attendee_count}</p>
+                <p className="text-xl font-bold text-fg-primary">{session.attendee_count}</p>
               </div>
 
-              <div className="rounded-xl bg-white/[0.04] px-3 py-2.5">
+              <div className="rounded-xl bg-panel-hover px-3 py-2.5">
                 <div className="flex items-center gap-1.5 mb-1">
                   <Clock size={11} className="text-cyan-400" />
-                  <span className="text-[10px] uppercase tracking-wider text-white/35">Elapsed</span>
+                  <span className="text-[10px] uppercase tracking-wider text-fg-tertiary">Elapsed</span>
                 </div>
-                <p className="text-xl font-bold text-white">{formatDurationMinutes(elapsed)}</p>
+                <p className="text-xl font-bold text-fg-primary">{formatDurationMinutes(elapsed)}</p>
               </div>
             </div>
 
             {/* Start time */}
-            <p className="mt-3 text-[11px] text-white/25 truncate">
+            <p className="mt-3 text-[11px] text-fg-muted truncate">
               Started {formatDateTime(session.start_time)}
             </p>
           </div>

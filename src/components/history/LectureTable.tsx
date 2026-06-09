@@ -31,28 +31,28 @@ export default function LectureTable({
   const totalPages = Math.ceil(total / PAGE_SIZE);
 
   return (
-    <div className="rounded-2xl border border-white/[0.07] overflow-hidden">
+    <div className="rounded-2xl border border-panel-border overflow-hidden">
       {/* Table */}
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-white/[0.06] bg-white/[0.02]">
-              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">
+            <tr className="border-b border-panel-border bg-panel-hover">
+              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-fg-tertiary">
                 Professor
               </th>
-              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">
+              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-fg-tertiary">
                 <div className="flex items-center gap-1.5">
                   <Calendar size={11} />
                   Start Time
                 </div>
               </th>
-              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">
+              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-fg-tertiary">
                 End Time
               </th>
-              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">
+              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-fg-tertiary">
                 Status
               </th>
-              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">
+              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-fg-tertiary">
                 <div className="flex items-center gap-1.5">
                   <Users size={11} />
                   Attendees
@@ -90,32 +90,32 @@ export default function LectureTable({
                       cursor-pointer transition-colors duration-100
                       ${isSelected
                         ? 'bg-indigo-500/10 border-l-2 border-l-indigo-400'
-                        : 'hover:bg-white/[0.025]'
+                        : 'hover:bg-panel-hover'
                       }
                     `}
                   >
                     <td className="px-5 py-3.5">
-                      <span className="font-medium text-white/90">{row.professor_name}</span>
+                      <span className="font-medium text-fg-primary">{row.professor_name}</span>
                     </td>
-                    <td className="px-5 py-3.5 text-white/55">
+                    <td className="px-5 py-3.5 text-fg-secondary">
                       {formatDateTime(row.start_time)}
                     </td>
-                    <td className="px-5 py-3.5 text-white/40">
-                      {row.end_time ? formatDateTime(row.end_time) : <span className="text-white/20">—</span>}
+                    <td className="px-5 py-3.5 text-fg-tertiary">
+                      {row.end_time ? formatDateTime(row.end_time) : <span className="text-fg-muted">—</span>}
                     </td>
                     <td className="px-5 py-3.5">
                       <Badge status={row.status} />
                     </td>
                     <td className="px-5 py-3.5">
-                      <span className="inline-flex items-center gap-1.5 rounded-lg bg-white/[0.05] px-2.5 py-0.5 text-xs font-medium text-white/70">
-                        <Users size={10} className="text-white/40" />
+                      <span className="inline-flex items-center gap-1.5 rounded-lg bg-panel-hover px-2.5 py-0.5 text-xs font-medium text-fg-secondary">
+                        <Users size={10} className="text-fg-tertiary" />
                         {row.attendee_count}
                       </span>
                     </td>
                     <td className="px-4 py-3.5">
                       <ChevronDown
                         size={14}
-                        className={`text-white/30 transition-transform duration-200 ${isSelected ? 'rotate-180 text-indigo-400' : ''}`}
+                        className={`text-fg-muted transition-transform duration-200 ${isSelected ? 'rotate-180 text-indigo-600 dark:text-indigo-400' : ''}`}
                       />
                     </td>
                   </tr>
@@ -128,22 +128,22 @@ export default function LectureTable({
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between px-5 py-3 border-t border-white/[0.06] bg-white/[0.02]">
-          <p className="text-xs text-white/30">
+        <div className="flex items-center justify-between px-5 py-3 border-t border-panel-border bg-panel-hover">
+          <p className="text-xs text-fg-muted">
             Page {page} of {totalPages} &nbsp;·&nbsp; {total} total
           </p>
           <div className="flex items-center gap-1">
             <button
               onClick={() => onPageChange(page - 1)}
               disabled={page === 1}
-              className="flex h-7 w-7 items-center justify-center rounded-lg text-white/40 hover:text-white/80 hover:bg-white/[0.06] disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              className="flex h-7 w-7 items-center justify-center rounded-lg text-fg-tertiary hover:text-fg-primary hover:bg-panel-hover disabled:opacity-30 disabled:cursor-not-allowed transition-all"
             >
               <ChevronLeft size={14} />
             </button>
             <button
               onClick={() => onPageChange(page + 1)}
               disabled={page === totalPages}
-              className="flex h-7 w-7 items-center justify-center rounded-lg text-white/40 hover:text-white/80 hover:bg-white/[0.06] disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              className="flex h-7 w-7 items-center justify-center rounded-lg text-fg-tertiary hover:text-fg-primary hover:bg-panel-hover disabled:opacity-30 disabled:cursor-not-allowed transition-all"
             >
               <ChevronRight size={14} />
             </button>

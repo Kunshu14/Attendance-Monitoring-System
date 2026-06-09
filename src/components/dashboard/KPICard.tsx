@@ -11,7 +11,7 @@ interface KPICardProps {
 
 const COLOR_MAP = {
   indigo: {
-    icon: 'bg-indigo-500/15 text-indigo-400',
+    icon: 'bg-indigo-500/15 text-indigo-600 dark:text-indigo-400',
     glow: 'shadow-indigo-500/10',
     value: 'text-indigo-50',
   },
@@ -45,10 +45,10 @@ export default function KPICard({
   return (
     <div
       className={`
-        relative overflow-hidden rounded-2xl border border-white/[0.07]
-        bg-gradient-to-br from-white/[0.05] to-white/[0.02]
+        relative overflow-hidden rounded-2xl border border-panel-border
+        bg-gradient-to-br from-panel-hover to-transparent
         p-5 shadow-xl ${c.glow}
-        hover:border-white/[0.12] transition-all duration-300 group
+        hover:border-panel-border transition-all duration-300 group
       `}
     >
       {/* Subtle grid background */}
@@ -63,19 +63,19 @@ export default function KPICard({
 
       <div className="flex items-start justify-between">
         <div className="flex-1 min-w-0">
-          <p className="text-xs font-medium text-white/40 uppercase tracking-wider mb-3">
+          <p className="text-xs font-medium text-fg-tertiary uppercase tracking-wider mb-3">
             {title}
           </p>
           <p className={`text-3xl font-bold tracking-tight ${c.value}`}>
             {value}
             {suffix && (
-              <span className="text-lg font-medium text-white/40 ml-1">
+              <span className="text-lg font-medium text-fg-tertiary ml-1">
                 {suffix}
               </span>
             )}
           </p>
           {delta && (
-            <p className="text-xs text-white/30 mt-2">{delta}</p>
+            <p className="text-xs text-fg-muted mt-2">{delta}</p>
           )}
         </div>
         <div

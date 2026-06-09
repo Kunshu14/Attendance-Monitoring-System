@@ -9,12 +9,12 @@ interface AttendanceBadgeProps {
 function getColor(pct: number): { bar: string; text: string; bg: string } {
   if (pct >= 75) return { bar: 'bg-emerald-400', text: 'text-emerald-400', bg: 'bg-emerald-400/10' };
   if (pct >= 50) return { bar: 'bg-amber-400',   text: 'text-amber-400',   bg: 'bg-amber-400/10'   };
-  return             { bar: 'bg-red-400',     text: 'text-red-400',     bg: 'bg-red-400/10'     };
+  return             { bar: 'bg-red-400',     text: 'text-red-600 dark:text-red-400',     bg: 'bg-red-400/10'     };
 }
 
 export default function AttendanceBadge({ percent }: AttendanceBadgeProps) {
   if (percent === null) {
-    return <span className="text-xs text-white/20">—</span>;
+    return <span className="text-xs text-fg-muted">—</span>;
   }
 
   const pct = Math.min(Math.max(percent, 0), 100);
@@ -23,7 +23,7 @@ export default function AttendanceBadge({ percent }: AttendanceBadgeProps) {
   return (
     <div className="flex items-center gap-2 min-w-[90px]">
       {/* Bar */}
-      <div className="flex-1 h-1.5 rounded-full bg-white/[0.07] overflow-hidden">
+      <div className="flex-1 h-1.5 rounded-full bg-panel-hover overflow-hidden">
         <div
           className={`h-full rounded-full ${c.bar} transition-all duration-500`}
           style={{ width: `${pct}%` }}
