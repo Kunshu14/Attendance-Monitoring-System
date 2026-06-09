@@ -70,7 +70,7 @@ export default function LectureFilters({
           type="date"
           value={dateFrom}
           onChange={(e) => onDateFromChange(e.target.value)}
-          className={`${inputCls} [color-scheme:dark]`}
+          className={`${inputCls} dark:[color-scheme:dark]`}
         />
 
         {/* Date to */}
@@ -78,7 +78,7 @@ export default function LectureFilters({
           type="date"
           value={dateTo}
           onChange={(e) => onDateToChange(e.target.value)}
-          className={`${inputCls} [color-scheme:dark]`}
+          className={`${inputCls} dark:[color-scheme:dark]`}
         />
       </div>
 

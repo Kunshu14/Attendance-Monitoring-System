@@ -92,7 +92,7 @@ export default function AttendeeSlideOver({
               description="No students tapped in for this lecture."
             />
           ) : (
-            <div className="divide-y divide-white/[0.04]">
+            <div className="divide-y divide-panel-border">
               {attendees.map((row, idx) => (
                 <div key={row.student_id} className="flex items-center gap-4 px-6 py-3.5 hover:bg-panel-hover transition-colors">
                   {/* Index */}

@@ -13,22 +13,22 @@ const COLOR_MAP = {
   indigo: {
     icon: 'bg-indigo-500/15 text-indigo-600 dark:text-indigo-400',
     glow: 'shadow-indigo-500/10',
-    value: 'text-indigo-50',
+    value: 'text-indigo-950 dark:text-indigo-50',
   },
   cyan: {
     icon: 'bg-cyan-500/15 text-cyan-400',
     glow: 'shadow-cyan-500/10',
-    value: 'text-cyan-50',
+    value: 'text-cyan-950 dark:text-cyan-50',
   },
   emerald: {
     icon: 'bg-emerald-500/15 text-emerald-400',
     glow: 'shadow-emerald-500/10',
-    value: 'text-emerald-50',
+    value: 'text-emerald-950 dark:text-emerald-50',
   },
   amber: {
     icon: 'bg-amber-500/15 text-amber-400',
     glow: 'shadow-amber-500/10',
-    value: 'text-amber-50',
+    value: 'text-amber-950 dark:text-amber-50',
   },
 };
 
@@ -53,10 +53,10 @@ export default function KPICard({
     >
       {/* Subtle grid background */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.02]"
+        className="pointer-events-none absolute inset-0 opacity-5 dark:opacity-[0.02] text-fg-primary"
         style={{
           backgroundImage:
-            'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)',
+            'linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)',
           backgroundSize: '20px 20px',
         }}
       />

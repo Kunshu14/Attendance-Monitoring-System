@@ -118,7 +118,7 @@ export default function StudentSlideOver({
               <p className="px-6 pt-4 pb-2 text-[10px] uppercase tracking-widest text-fg-muted font-medium">
                 Breakdown by Professor / Subject
               </p>
-              <div className="divide-y divide-white/[0.04]">
+              <div className="divide-y divide-panel-border">
                 {breakdown.map((row) => (
                   <div key={row.professorId} className="px-6 py-4 hover:bg-panel-hover transition-colors">
                     {/* Professor name + avatar */}

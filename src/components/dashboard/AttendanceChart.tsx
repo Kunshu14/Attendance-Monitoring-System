@@ -63,18 +63,18 @@ export default function AttendanceChart({ data }: AttendanceChartProps) {
           </defs>
           <CartesianGrid
             strokeDasharray="3 3"
-            stroke="rgba(255,255,255,0.04)"
+            stroke="var(--panel-border)"
             vertical={false}
           />
           <XAxis
             dataKey="label"
-            tick={{ fill: 'rgba(255,255,255,0.3)', fontSize: 11 }}
+            tick={{ fill: 'var(--fg-tertiary)', fontSize: 11 }}
             axisLine={false}
             tickLine={false}
           />
           <YAxis
             allowDecimals={false}
-            tick={{ fill: 'rgba(255,255,255,0.3)', fontSize: 11 }}
+            tick={{ fill: 'var(--fg-tertiary)', fontSize: 11 }}
             axisLine={false}
             tickLine={false}
           />

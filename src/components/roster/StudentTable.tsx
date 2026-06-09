@@ -74,7 +74,7 @@ export default function StudentTable({
               <th className="px-5 py-3 w-24 text-right text-[11px] font-medium uppercase tracking-wider text-fg-tertiary">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-white/[0.04]">
+          <tbody className="divide-y divide-panel-border">
             {students.length === 0 ? (
               <tr>
                 <td colSpan={6}>

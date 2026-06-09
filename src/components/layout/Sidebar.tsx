@@ -60,7 +60,7 @@ export default function Sidebar({ open = true, onClose }: SidebarProps) {
         {/* Logo */}
         <div className="flex items-center gap-3 px-6 py-5 border-b border-panel-border">
           <div className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-500 shadow-lg shadow-indigo-500/25">
-            <Wifi size={18} className="text-fg-primary" />
+            <Wifi size={18} className="text-white" />
             <span className="absolute -top-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-emerald-400 ring-2 ring-panel-bg" />
           </div>
           <div>

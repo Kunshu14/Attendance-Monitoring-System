@@ -61,7 +61,7 @@ export default function LectureTable({
               <th className="px-5 py-3 w-8" />
             </tr>
           </thead>
-          <tbody className="divide-y divide-white/[0.04]">
+          <tbody className="divide-y divide-panel-border">
             {loading ? (
               <tr>
                 <td colSpan={6} className="py-16">
