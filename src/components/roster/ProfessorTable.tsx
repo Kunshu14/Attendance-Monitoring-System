@@ -34,12 +34,12 @@ export default function ProfessorTable({
   };
 
   return (
-    <div className="rounded-2xl border border-white/[0.07] overflow-hidden">
+    <div className="rounded-2xl border border-panel-border overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-white/[0.06] bg-white/[0.02]">
+      <div className="flex items-center justify-between px-5 py-4 border-b border-panel-border bg-panel-hover">
         <div>
-          <h2 className="text-sm font-semibold text-white">Faculty Roster</h2>
-          <p className="text-xs text-white/35 mt-0.5">{professors.length} professors registered</p>
+          <h2 className="text-sm font-semibold text-fg-primary">Faculty Roster</h2>
+          <p className="text-xs text-fg-tertiary mt-0.5">{professors.length} professors registered</p>
         </div>
         <button
           onClick={onAdd}
@@ -55,19 +55,19 @@ export default function ProfessorTable({
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-white/[0.05]">
-              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">Name</th>
-              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">
+            <tr className="border-b border-panel-border">
+              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-fg-tertiary">Name</th>
+              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-fg-tertiary">
                 <div className="flex items-center gap-1.5"><CreditCard size={11} /> RFID UID</div>
               </th>
-              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">
+              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-fg-tertiary">
                 <div className="flex items-center gap-1.5"><BookOpen size={11} /> Lectures</div>
               </th>
-              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">
+              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-fg-tertiary">
                 <div className="flex items-center gap-1.5"><TrendingUp size={11} /> Avg Attendance</div>
               </th>
-              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">Registered</th>
-              <th className="px-5 py-3 w-24 text-right text-[11px] font-medium uppercase tracking-wider text-white/35">Actions</th>
+              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-fg-tertiary">Registered</th>
+              <th className="px-5 py-3 w-24 text-right text-[11px] font-medium uppercase tracking-wider text-fg-tertiary">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-white/[0.04]">
@@ -82,15 +82,15 @@ export default function ProfessorTable({
               </tr>
             ) : (
               professors.map((prof) => (
-                <tr key={prof.id} className="hover:bg-white/[0.02] transition-colors group">
+                <tr key={prof.id} className="hover:bg-panel-hover transition-colors group">
                   <td className="px-5 py-3.5">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500/25 to-pink-500/25 text-xs font-bold text-violet-300">
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500/25 to-pink-500/25 text-xs font-bold text-violet-700 dark:text-violet-300">
                         {prof.full_name.slice(0, 2).toUpperCase()}
                       </div>
                       <div>
-                        <p className="font-medium text-white/90">{prof.full_name}</p>
-                        <p className="text-[11px] text-white/30 mt-0.5">Professor</p>
+                        <p className="font-medium text-fg-primary">{prof.full_name}</p>
+                        <p className="text-[11px] text-fg-muted mt-0.5">Professor</p>
                       </div>
                     </div>
                   </td>
@@ -100,20 +100,20 @@ export default function ProfessorTable({
                     </span>
                   </td>
                   <td className="px-5 py-3.5">
-                    <span className="inline-flex items-center gap-1.5 rounded-lg bg-white/[0.05] px-2.5 py-0.5 text-xs font-medium text-white/70">
-                      <BookOpen size={10} className="text-white/40" />
+                    <span className="inline-flex items-center gap-1.5 rounded-lg bg-panel-hover px-2.5 py-0.5 text-xs font-medium text-fg-secondary">
+                      <BookOpen size={10} className="text-fg-tertiary" />
                       {prof.completedLectures}
                     </span>
                   </td>
                   <td className="px-5 py-3.5">
                     <AttendanceBadge percent={prof.avgAttendancePercent} />
                   </td>
-                  <td className="px-5 py-3.5 text-xs text-white/35">{formatDate(prof.created_at)}</td>
+                  <td className="px-5 py-3.5 text-xs text-fg-tertiary">{formatDate(prof.created_at)}</td>
                   <td className="px-5 py-3.5">
                     <div className="flex items-center justify-end gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
                       <button
                         onClick={() => onEdit(prof)}
-                        className="flex h-7 w-7 items-center justify-center rounded-lg text-white/40 hover:text-violet-400 hover:bg-violet-500/10 transition-all"
+                        className="flex h-7 w-7 items-center justify-center rounded-lg text-fg-tertiary hover:text-violet-600 dark:text-violet-400 hover:bg-violet-500/10 transition-all"
                         title="Edit professor"
                       >
                         <Pencil size={13} />
@@ -122,8 +122,8 @@ export default function ProfessorTable({
                         onClick={() => handleDelete(prof.id)}
                         className={`flex h-7 w-7 items-center justify-center rounded-lg transition-all ${
                           deleteConfirm === prof.id
-                            ? 'bg-red-500/20 text-red-400'
-                            : 'text-white/40 hover:text-red-400 hover:bg-red-500/10'
+                            ? 'bg-red-500/20 text-red-600 dark:text-red-400'
+                            : 'text-fg-tertiary hover:text-red-600 dark:text-red-400 hover:bg-red-500/10'
                         }`}
                         title={deleteConfirm === prof.id ? 'Click again to confirm' : 'Delete professor'}
                       >

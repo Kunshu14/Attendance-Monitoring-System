@@ -55,30 +55,30 @@ export default function StudentSlideOver({
         ref={panelRef}
         className={`
           fixed right-0 top-0 z-50 h-full w-full max-w-md
-          bg-[#0d1117] border-l border-white/[0.08] shadow-2xl
+          bg-panel-bg border-l border-panel-border shadow-2xl
           flex flex-col
           transition-transform duration-300 ease-out
           ${open ? 'translate-x-0' : 'translate-x-full'}
         `}
       >
         {/* Header */}
-        <div className="flex items-start justify-between px-6 py-5 border-b border-white/[0.07]">
+        <div className="flex items-start justify-between px-6 py-5 border-b border-panel-border">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/30 to-violet-500/30 text-sm font-bold text-indigo-300">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/30 to-violet-500/30 text-sm font-bold text-indigo-700 dark:text-indigo-300">
               {student ? initials(student.full_name) : '??'}
             </div>
             <div>
-              <h2 className="text-sm font-semibold text-white">
+              <h2 className="text-sm font-semibold text-fg-primary">
                 {student?.full_name ?? 'Student'}
               </h2>
-              <p className="text-xs text-white/40 mt-0.5">
+              <p className="text-xs text-fg-tertiary mt-0.5">
                 {student?.roll_number} · Attendance by Subject
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="mt-0.5 flex h-7 w-7 items-center justify-center rounded-lg text-white/40 hover:text-white/80 hover:bg-white/[0.06] transition-all"
+            className="mt-0.5 flex h-7 w-7 items-center justify-center rounded-lg text-fg-tertiary hover:text-fg-primary hover:bg-panel-hover transition-all"
           >
             <X size={14} />
           </button>
@@ -86,12 +86,12 @@ export default function StudentSlideOver({
 
         {/* Overall summary bar */}
         {student && (
-          <div className="px-6 py-3 border-b border-white/[0.06] bg-indigo-500/[0.07]">
+          <div className="px-6 py-3 border-b border-panel-border bg-indigo-500/[0.07]">
             <div className="flex items-center justify-between mb-1.5">
-              <span className="text-xs text-indigo-300 font-medium flex items-center gap-1.5">
+              <span className="text-xs text-indigo-700 dark:text-indigo-300 font-medium flex items-center gap-1.5">
                 <TrendingUp size={11} /> Overall Attendance
               </span>
-              <span className="text-xs font-semibold text-indigo-200">
+              <span className="text-xs font-semibold text-indigo-800 dark:text-indigo-200">
                 {student.lecturesAttended} lectures attended
               </span>
             </div>
@@ -107,26 +107,26 @@ export default function StudentSlideOver({
             </div>
           ) : breakdown.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.04] mb-3">
-                <TrendingUp size={20} className="text-white/20" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-panel-hover mb-3">
+                <TrendingUp size={20} className="text-fg-muted" />
               </div>
-              <p className="text-sm text-white/40">No lecture data yet</p>
-              <p className="text-xs text-white/25 mt-1">Attendance will appear once lectures are completed.</p>
+              <p className="text-sm text-fg-tertiary">No lecture data yet</p>
+              <p className="text-xs text-fg-muted mt-1">Attendance will appear once lectures are completed.</p>
             </div>
           ) : (
             <>
-              <p className="px-6 pt-4 pb-2 text-[10px] uppercase tracking-widest text-white/25 font-medium">
+              <p className="px-6 pt-4 pb-2 text-[10px] uppercase tracking-widest text-fg-muted font-medium">
                 Breakdown by Professor / Subject
               </p>
               <div className="divide-y divide-white/[0.04]">
                 {breakdown.map((row) => (
-                  <div key={row.professorId} className="px-6 py-4 hover:bg-white/[0.02] transition-colors">
+                  <div key={row.professorId} className="px-6 py-4 hover:bg-panel-hover transition-colors">
                     {/* Professor name + avatar */}
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500/25 to-pink-500/25 text-xs font-bold text-violet-300">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500/25 to-pink-500/25 text-xs font-bold text-violet-700 dark:text-violet-300">
                         {initials(row.professorName)}
                       </div>
-                      <p className="text-sm font-medium text-white/85 truncate">
+                      <p className="text-sm font-medium text-fg-primary truncate">
                         {row.professorName}
                       </p>
                     </div>
@@ -136,7 +136,7 @@ export default function StudentSlideOver({
                       <div className="flex-1">
                         <AttendanceBadge percent={row.percent} />
                       </div>
-                      <span className="text-xs text-white/30 shrink-0 tabular-nums">
+                      <span className="text-xs text-fg-muted shrink-0 tabular-nums">
                         {row.attended} / {row.total} lectures
                       </span>
                     </div>

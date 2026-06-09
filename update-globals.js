@@ -1,7 +1,6 @@
-@import "tailwindcss";
+const fs = require('fs');
 
-
-@custom-variant dark (&:where(.dark, .dark *));
+const content = `@import "tailwindcss";
 
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -127,3 +126,7 @@ select option {
 .duration-200 {
   animation-duration: 200ms;
 }
+`;
+
+fs.writeFileSync('src/app/globals.css', content, 'utf8');
+console.log('globals.css updated');

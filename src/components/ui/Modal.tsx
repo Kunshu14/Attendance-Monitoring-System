@@ -47,16 +47,16 @@ export default function Modal({
       <div
         className={`
           relative w-full ${maxWidth}
-          bg-[#111827] border border-white/[0.08] rounded-2xl shadow-2xl
+          bg-panel-bg border border-panel-border rounded-2xl shadow-2xl
           animate-in fade-in zoom-in-95 duration-200
         `}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.07]">
-          <h2 className="text-sm font-semibold text-white">{title}</h2>
+        <div className="flex items-center justify-between px-6 py-4 border-b border-panel-border">
+          <h2 className="text-sm font-semibold text-fg-primary">{title}</h2>
           <button
             onClick={onClose}
-            className="flex h-7 w-7 items-center justify-center rounded-lg text-white/40 hover:text-white/80 hover:bg-white/[0.06] transition-all"
+            className="flex h-7 w-7 items-center justify-center rounded-lg text-fg-tertiary hover:text-fg-primary hover:bg-panel-hover transition-all"
           >
             <X size={14} />
           </button>

@@ -30,8 +30,8 @@ export default async function DashboardPage() {
         </div>
 
         {/* Quick Info Panel */}
-        <div className="rounded-2xl border border-white/[0.07] bg-gradient-to-br from-white/[0.05] to-white/[0.02] p-5">
-          <h2 className="text-sm font-semibold text-white mb-4">System Status</h2>
+        <div className="rounded-2xl border border-panel-border bg-gradient-to-br from-panel-hover to-transparent p-5">
+          <h2 className="text-sm font-semibold text-fg-primary mb-4">System Status</h2>
           <div className="space-y-3">
             <StatusRow label="Database" status="Online" color="emerald" />
             <StatusRow label="Realtime" status="Active" color="emerald" />
@@ -40,19 +40,19 @@ export default async function DashboardPage() {
           </div>
 
           <div className="mt-6 rounded-xl bg-indigo-500/10 border border-indigo-500/20 p-4">
-            <p className="text-xs font-semibold text-indigo-300 mb-1">Attendance Rate</p>
+            <p className="text-xs font-semibold text-indigo-700 dark:text-indigo-300 mb-1">Attendance Rate</p>
             <div className="flex items-end gap-2 mb-2">
-              <span className="text-3xl font-bold text-white">{stats.avgAttendanceRate.toFixed(1)}</span>
-              <span className="text-sm text-white/40 mb-1">%</span>
+              <span className="text-3xl font-bold text-fg-primary">{stats.avgAttendanceRate.toFixed(1)}</span>
+              <span className="text-sm text-fg-tertiary mb-1">%</span>
             </div>
             {/* Progress bar */}
-            <div className="h-1.5 rounded-full bg-white/[0.07] overflow-hidden">
+            <div className="h-1.5 rounded-full bg-panel-hover overflow-hidden">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-cyan-400 transition-all duration-700"
                 style={{ width: `${Math.min(stats.avgAttendanceRate, 100)}%` }}
               />
             </div>
-            <p className="text-[11px] text-white/30 mt-2">Average across completed lectures</p>
+            <p className="text-[11px] text-fg-muted mt-2">Average across completed lectures</p>
           </div>
         </div>
       </div>
@@ -77,10 +77,10 @@ function StatusRow({
 
   return (
     <div className="flex items-center justify-between">
-      <span className="text-xs text-white/50">{label}</span>
+      <span className="text-xs text-fg-tertiary">{label}</span>
       <div className="flex items-center gap-1.5">
         <span className={`h-1.5 w-1.5 rounded-full ${dotCls} animate-pulse`} />
-        <span className="text-xs font-medium text-white/70">{status}</span>
+        <span className="text-xs font-medium text-fg-secondary">{status}</span>
       </div>
     </div>
   );

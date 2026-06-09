@@ -13,9 +13,9 @@ interface StudentModalProps {
 
 const EMPTY: StudentFormData = { full_name: '', roll_number: '', rfid_uid: '' };
 
-const labelCls = 'block text-xs font-medium text-white/50 mb-1.5';
+const labelCls = 'block text-xs font-medium text-fg-tertiary mb-1.5';
 const inputCls =
-  'w-full rounded-lg border border-white/[0.1] bg-white/[0.05] px-3 py-2.5 text-sm text-white placeholder:text-white/20 focus:border-indigo-500/60 focus:outline-none focus:ring-1 focus:ring-indigo-500/30 transition-colors';
+  'w-full rounded-lg border border-panel-border bg-panel-hover px-3 py-2.5 text-sm text-fg-primary placeholder:text-fg-muted focus:border-indigo-500/60 focus:outline-none focus:ring-1 focus:ring-indigo-500/30 transition-colors';
 
 export default function StudentModal({
   open,
@@ -89,7 +89,7 @@ export default function StudentModal({
             className={`${inputCls} ${errors.full_name ? 'border-red-500/50' : ''}`}
           />
           {errors.full_name && (
-            <p className="mt-1 text-xs text-red-400">{errors.full_name}</p>
+            <p className="mt-1 text-xs text-red-600 dark:text-red-400">{errors.full_name}</p>
           )}
         </div>
 
@@ -105,7 +105,7 @@ export default function StudentModal({
             className={`${inputCls} ${errors.roll_number ? 'border-red-500/50' : ''}`}
           />
           {errors.roll_number && (
-            <p className="mt-1 text-xs text-red-400">{errors.roll_number}</p>
+            <p className="mt-1 text-xs text-red-600 dark:text-red-400">{errors.roll_number}</p>
           )}
         </div>
 
@@ -121,9 +121,9 @@ export default function StudentModal({
             className={`${inputCls} font-mono ${errors.rfid_uid ? 'border-red-500/50' : ''}`}
           />
           {errors.rfid_uid && (
-            <p className="mt-1 text-xs text-red-400">{errors.rfid_uid}</p>
+            <p className="mt-1 text-xs text-red-600 dark:text-red-400">{errors.rfid_uid}</p>
           )}
-          <p className="mt-1.5 text-[11px] text-white/25">
+          <p className="mt-1.5 text-[11px] text-fg-muted">
             The unique UID from the physical RFID card or NFC device assigned to this student.
           </p>
         </div>
@@ -131,7 +131,7 @@ export default function StudentModal({
         {/* Server error */}
         {serverError && (
           <div className="rounded-lg bg-red-500/10 border border-red-500/20 px-3 py-2.5">
-            <p className="text-xs text-red-400">{serverError}</p>
+            <p className="text-xs text-red-600 dark:text-red-400">{serverError}</p>
           </div>
         )}
 
@@ -140,7 +140,7 @@ export default function StudentModal({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg px-4 py-2 text-sm text-white/50 hover:text-white/80 hover:bg-white/[0.05] transition-all"
+            className="rounded-lg px-4 py-2 text-sm text-fg-tertiary hover:text-fg-primary hover:bg-panel-hover transition-all"
           >
             Cancel
           </button>
@@ -148,7 +148,7 @@ export default function StudentModal({
             type="submit"
             disabled={submitting}
             id={isEdit ? 'edit-student-submit' : 'add-student-submit'}
-            className="flex items-center gap-2 rounded-xl bg-indigo-500 hover:bg-indigo-400 disabled:opacity-50 disabled:cursor-not-allowed px-5 py-2 text-sm font-semibold text-white transition-all shadow-lg shadow-indigo-500/20"
+            className="flex items-center gap-2 rounded-xl bg-indigo-500 hover:bg-indigo-400 disabled:opacity-50 disabled:cursor-not-allowed px-5 py-2 text-sm font-semibold text-fg-primary transition-all shadow-lg shadow-indigo-500/20"
           >
             {submitting ? (
               <>

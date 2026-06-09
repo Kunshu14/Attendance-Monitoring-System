@@ -22,13 +22,13 @@ const CustomTooltip = ({ active, payload }: any) => {
   // Use the original ISO date from the data object, not the XAxis label (short day name)
   const isoDate: string | undefined = payload[0]?.payload?.date;
   return (
-    <div className="rounded-xl border border-white/10 bg-[#1a2235] px-4 py-3 shadow-2xl">
-      <p className="text-xs text-white/40 mb-1">
+    <div className="rounded-xl border border-panel-border bg-panel-bg px-4 py-3 shadow-2xl">
+      <p className="text-xs text-fg-tertiary mb-1">
         {isoDate ? format(parseISO(isoDate), 'EEEE, MMM d') : ''}
       </p>
-      <p className="text-sm font-semibold text-white">
+      <p className="text-sm font-semibold text-fg-primary">
         {payload[0].value}{' '}
-        <span className="text-white/40 font-normal text-xs">check-ins</span>
+        <span className="text-fg-tertiary font-normal text-xs">check-ins</span>
       </p>
     </div>
   );
@@ -41,15 +41,15 @@ export default function AttendanceChart({ data }: AttendanceChartProps) {
   }));
 
   return (
-    <div className="rounded-2xl border border-white/[0.07] bg-gradient-to-br from-white/[0.05] to-white/[0.02] p-5">
+    <div className="rounded-2xl border border-panel-border bg-gradient-to-br from-panel-hover to-transparent p-5">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-sm font-semibold text-white">Attendance Trend</h2>
-          <p className="text-xs text-white/35 mt-0.5">Daily check-ins — last 7 days</p>
+          <h2 className="text-sm font-semibold text-fg-primary">Attendance Trend</h2>
+          <p className="text-xs text-fg-tertiary mt-0.5">Daily check-ins — last 7 days</p>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="h-2 w-2 rounded-full bg-indigo-400" />
-          <span className="text-xs text-white/40">Check-ins</span>
+          <span className="text-xs text-fg-tertiary">Check-ins</span>
         </div>
       </div>
 

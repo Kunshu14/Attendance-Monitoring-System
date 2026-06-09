@@ -38,12 +38,12 @@ export default function StudentTable({
   };
 
   return (
-    <div className="rounded-2xl border border-white/[0.07] overflow-hidden">
+    <div className="rounded-2xl border border-panel-border overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-white/[0.06] bg-white/[0.02]">
+      <div className="flex items-center justify-between px-5 py-4 border-b border-panel-border bg-panel-hover">
         <div>
-          <h2 className="text-sm font-semibold text-white">Student Roster</h2>
-          <p className="text-xs text-white/35 mt-0.5">{students.length} students enrolled</p>
+          <h2 className="text-sm font-semibold text-fg-primary">Student Roster</h2>
+          <p className="text-xs text-fg-tertiary mt-0.5">{students.length} students enrolled</p>
         </div>
         <button
           onClick={onAdd}
@@ -59,19 +59,19 @@ export default function StudentTable({
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-white/[0.05]">
-              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">Name</th>
-              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">
+            <tr className="border-b border-panel-border">
+              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-fg-tertiary">Name</th>
+              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-fg-tertiary">
                 <div className="flex items-center gap-1.5"><Hash size={11} /> Roll No.</div>
               </th>
-              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">
+              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-fg-tertiary">
                 <div className="flex items-center gap-1.5"><CreditCard size={11} /> RFID UID</div>
               </th>
-              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">
+              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-fg-tertiary">
                 <div className="flex items-center gap-1.5"><TrendingUp size={11} /> Attendance</div>
               </th>
-              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-white/35">Enrolled</th>
-              <th className="px-5 py-3 w-24 text-right text-[11px] font-medium uppercase tracking-wider text-white/35">Actions</th>
+              <th className="px-5 py-3 text-left text-[11px] font-medium uppercase tracking-wider text-fg-tertiary">Enrolled</th>
+              <th className="px-5 py-3 w-24 text-right text-[11px] font-medium uppercase tracking-wider text-fg-tertiary">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-white/[0.04]">
@@ -89,19 +89,19 @@ export default function StudentTable({
                   key={student.id}
                   onClick={() => onRowClick(student)}
                   className={`cursor-pointer transition-colors group ${
-                    isSelected ? 'bg-indigo-500/10' : 'hover:bg-white/[0.025]'
+                    isSelected ? 'bg-indigo-500/10' : 'hover:bg-panel-hover'
                   }`}
                 >
                   <td className="px-5 py-3.5">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500/25 to-violet-500/25 text-xs font-bold text-indigo-300">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500/25 to-violet-500/25 text-xs font-bold text-indigo-700 dark:text-indigo-300">
                         {student.full_name.slice(0, 2).toUpperCase()}
                       </div>
-                      <span className="font-medium text-white/90">{student.full_name}</span>
+                      <span className="font-medium text-fg-primary">{student.full_name}</span>
                     </div>
                   </td>
                   <td className="px-5 py-3.5">
-                    <span className="rounded-md bg-white/[0.05] px-2 py-0.5 text-xs font-mono text-white/70">
+                    <span className="rounded-md bg-panel-hover px-2 py-0.5 text-xs font-mono text-fg-secondary">
                       {student.roll_number}
                     </span>
                   </td>
@@ -114,19 +114,19 @@ export default function StudentTable({
                     <div className="flex flex-col gap-0.5">
                       <AttendanceBadge percent={student.attendancePercent} />
                       {student.attendancePercent !== null && (
-                        <span className="text-[10px] text-white/25">
+                        <span className="text-[10px] text-fg-muted">
                           {student.lecturesAttended} lecture{student.lecturesAttended !== 1 ? 's' : ''} attended
                         </span>
                       )}
                     </div>
                   </td>
-                  <td className="px-5 py-3.5 text-xs text-white/35">{formatDate(student.created_at)}</td>
+                  <td className="px-5 py-3.5 text-xs text-fg-tertiary">{formatDate(student.created_at)}</td>
                   <td className="px-5 py-3.5">
                     <div className="flex items-center justify-end gap-1.5">
                       <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                         <button
                           onClick={(e) => { e.stopPropagation(); onEdit(student); }}
-                          className="flex h-7 w-7 items-center justify-center rounded-lg text-white/40 hover:text-indigo-400 hover:bg-indigo-500/10 transition-all"
+                          className="flex h-7 w-7 items-center justify-center rounded-lg text-fg-tertiary hover:text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/10 transition-all"
                           title="Edit student"
                         >
                           <Pencil size={13} />
@@ -135,8 +135,8 @@ export default function StudentTable({
                           onClick={(e) => { e.stopPropagation(); handleDelete(student.id); }}
                           className={`flex h-7 w-7 items-center justify-center rounded-lg transition-all ${
                             deleteConfirm === student.id
-                              ? 'bg-red-500/20 text-red-400'
-                              : 'text-white/40 hover:text-red-400 hover:bg-red-500/10'
+                              ? 'bg-red-500/20 text-red-600 dark:text-red-400'
+                              : 'text-fg-tertiary hover:text-red-600 dark:text-red-400 hover:bg-red-500/10'
                           }`}
                           title={deleteConfirm === student.id ? 'Click again to confirm' : 'Delete student'}
                         >
@@ -146,7 +146,7 @@ export default function StudentTable({
                       <ChevronRight
                         size={14}
                         className={`shrink-0 transition-all duration-200 ${
-                          isSelected ? 'text-indigo-400 rotate-90' : 'text-white/20'
+                          isSelected ? 'text-indigo-600 dark:text-indigo-400 rotate-90' : 'text-fg-muted'
                         }`}
                       />
                     </div>
