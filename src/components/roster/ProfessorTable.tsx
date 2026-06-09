@@ -113,7 +113,7 @@ export default function ProfessorTable({
                     <div className="flex items-center justify-end gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
                       <button
                         onClick={() => onEdit(prof)}
-                        className="flex h-7 w-7 items-center justify-center rounded-lg text-fg-tertiary hover:text-violet-600 dark:text-violet-400 hover:bg-violet-500/10 transition-all"
+                        className="flex h-7 w-7 items-center justify-center rounded-lg text-fg-tertiary hover:text-violet-600 dark:hover:text-violet-400 hover:bg-violet-500/10 transition-all"
                         title="Edit professor"
                       >
                         <Pencil size={13} />
@@ -123,7 +123,7 @@ export default function ProfessorTable({
                         className={`flex h-7 w-7 items-center justify-center rounded-lg transition-all ${
                           deleteConfirm === prof.id
                             ? 'bg-red-500/20 text-red-600 dark:text-red-400'
-                            : 'text-fg-tertiary hover:text-red-600 dark:text-red-400 hover:bg-red-500/10'
+                            : 'text-fg-tertiary hover:text-red-600 dark:hover:text-red-400 hover:bg-red-500/10'
                         }`}
                         title={deleteConfirm === prof.id ? 'Click again to confirm' : 'Delete professor'}
                       >

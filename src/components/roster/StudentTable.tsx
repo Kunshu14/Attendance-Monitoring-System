@@ -126,7 +126,7 @@ export default function StudentTable({
                       <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                         <button
                           onClick={(e) => { e.stopPropagation(); onEdit(student); }}
-                          className="flex h-7 w-7 items-center justify-center rounded-lg text-fg-tertiary hover:text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/10 transition-all"
+                          className="flex h-7 w-7 items-center justify-center rounded-lg text-fg-tertiary hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-500/10 transition-all"
                           title="Edit student"
                         >
                           <Pencil size={13} />
@@ -136,7 +136,7 @@ export default function StudentTable({
                           className={`flex h-7 w-7 items-center justify-center rounded-lg transition-all ${
                             deleteConfirm === student.id
                               ? 'bg-red-500/20 text-red-600 dark:text-red-400'
-                              : 'text-fg-tertiary hover:text-red-600 dark:text-red-400 hover:bg-red-500/10'
+                              : 'text-fg-tertiary hover:text-red-600 dark:hover:text-red-400 hover:bg-red-500/10'
                           }`}
                           title={deleteConfirm === student.id ? 'Click again to confirm' : 'Delete student'}
                         >
